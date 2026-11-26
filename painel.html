@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de aulas - Auto Escola Atitude</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cadastro.css">
+  <link rel="stylesheet" href="css/painel.css">
+</head>
+<body>
+
+  <main class="app">
+
+    <header class="topo">
+      <a href="index.html">
+        <img src="img/logo.png" alt="Auto Escola Atitude - Voltar ao início" class="logo">
+      </a>
+    </header>
+
+    <h1 class="pagina-titulo">Painel de <span>Aulas</span></h1>
+
+    <div class="abas">
+      <button type="button" class="aba ativa" data-modo="semana">Semana</button>
+      <button type="button" class="aba" data-modo="dia">Dia</button>
+    </div>
+
+    <div class="periodo">
+      <button type="button" id="anterior" aria-label="Período anterior">&#8249;</button>
+      <div class="periodo__centro">
+        <strong id="periodoTexto"></strong>
+        <input type="date" id="dataEscolhida" aria-label="Escolher data">
+      </div>
+      <button type="button" id="proximo" aria-label="Próximo período">&#8250;</button>
+    </div>
+
+    <button type="button" class="link-hoje" id="hoje">Ir para hoje</button>
+
+    <section class="resumo">
+      <div class="resumo__card"><strong id="totalAulas">0</strong><span>Aulas</span></div>
+      <div class="resumo__card"><strong id="totalAlunos">0</strong><span>Alunos</span></div>
+      <div class="resumo__card"><strong id="pico">0</strong><span>Pico simultâneo</span></div>
+    </section>
+
+    <div class="grafico" id="grafico" hidden></div>
+
+    <input type="search" id="filtro" class="filtro" placeholder="Filtrar por aluno..." autocomplete="off">
+
+    <section id="lista"></section>
+
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/painel.js"></script>
+</body>
+</html>

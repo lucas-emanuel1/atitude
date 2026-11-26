@@ -1,0 +1,611 @@
+body.sem-scroll {
+  overflow: hidden;
+}
+
+/* BUSCA */
+.busca {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.busca svg {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #777;
+  pointer-events: none;
+}
+
+.busca input {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px 0 48px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #f1f1f1;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.busca input:focus {
+  background: #fff;
+  border-color: var(--laranja);
+  box-shadow: 0 0 0 3px rgba(232, 115, 12, 0.2);
+}
+
+/* RESULTADO DA BUSCA */
+.resultado {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.resultado__rotulo {
+  padding: 14px 16px 6px;
+  font-size: 0.78rem;
+  color: #777;
+}
+
+.vazio {
+  padding: 18px 16px;
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+}
+
+.aluno__nome {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aluno__nome:active {
+  background: #f5f5f5;
+}
+
+.aluno__opcoes {
+  display: none;
+}
+
+.aluno.aberto .aluno__opcoes {
+  display: block;
+}
+
+.aluno.aberto .aluno__nome {
+  color: var(--titulo-laranja);
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-top: 1px solid #eee;
+  background: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.opcao:active {
+  background: #f5f5f5;
+}
+
+.opcao svg {
+  width: 20px;
+  height: 20px;
+  color: var(--roxo);
+  flex-shrink: 0;
+}
+
+/* MODAL  */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__caixa {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 20px 18px 24px;
+  background: #fff;
+  border-radius: 16px;
+}
+
+.modal__fechar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+}
+
+.modal__nome {
+  margin-bottom: 14px;
+  padding-right: 30px;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #777;
+}
+
+.modal__linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.modal__contador {
+  font-weight: 400;
+  color: #2e7d32;
+}
+
+/* Contador de quantidade */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepper button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--laranja);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--laranja);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.stepper button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.stepper output {
+  min-width: 26px;
+  text-align: center;
+}
+
+/* Campo "Data" */
+.data-campo {
+  padding: 8px 14px;
+  background: #ececec;
+  border-bottom: 2px solid var(--laranja);
+}
+
+.data-campo small {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--laranja);
+}
+
+.data-campo strong {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* CALENDÁRIO */
+.calendario {
+  margin-top: 12px;
+  padding: 12px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.calendario__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 6px;
+  font-size: 0.85rem;
+}
+
+.calendario__setas button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.calendario__setas button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.calendario__semana,
+.calendario__dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.calendario__semana span {
+  padding: 6px 0;
+  font-size: 0.62rem;
+  color: #555;
+}
+
+.dia {
+  position: relative;
+  width: 100%;
+  max-width: 36px;
+  aspect-ratio: 1;
+  margin: 2px auto;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  font-family: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.dia:disabled {
+  color: #c4c4c4;
+  cursor: default;
+}
+
+.dia.hoje {
+  border: 1px solid var(--laranja);
+}
+
+.dia.selecionado {
+  background: #e8730c;
+  color: #fff;
+}
+
+.dia.marcado::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--roxo);
+}
+
+.dia.selecionado.marcado::after {
+  background: #fff;
+}
+
+/* HORÁRIO */
+.horario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.horario span {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.horario select {
+  flex: 1;
+  height: 56px;
+  border: none;
+  border-radius: 6px;
+  background: #ececec;
+  color: #222;
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  text-align-last: center;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+#hora {
+  background: #f99806;
+  color: #fff;
+}
+
+/* BOTÕES */
+.btn-adicionar {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 4px;
+  background: #e8730c;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-adicionar:active {
+  background: #cf650a;
+}
+
+.modal .btn-principal {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-principal:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* LISTA DE AULAS ESCOLHIDAS */
+.lista {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.lista ul {
+  list-style: none;
+}
+
+.lista li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 4px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.lista li button {
+  border: none;
+  background: none;
+  color: #d93025;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-imprimir {
+  display: block;
+  margin: 18px auto 0;
+  border: none;
+  background: none;
+  color: #f5a94b;
+  cursor: pointer;
+}
+
+.btn-imprimir svg {
+  width: 38px;
+  height: 38px;
+}
+
+.btn-imprimir:active {
+  transform: scale(0.94);
+}
+
+/* DICA DO HORÁRIO */
+.dica {
+  margin: -6px 0 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.dica.erro-horario {
+  color: #d93025;
+}
+
+/* EDITAR AULAS */
+.edit-lista {
+  list-style: none;
+}
+
+.edit-item {
+  padding: 14px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.edit-item__linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.92rem;
+}
+
+.edit-item.passou .edit-item__linha {
+  opacity: 0.5;
+}
+
+.edit-item__tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eee;
+  font-size: 0.7rem;
+}
+
+.edit-item__acoes {
+  display: flex;
+  gap: 4px;
+}
+
+.icone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--roxo);
+  cursor: pointer;
+}
+
+.icone-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icone-btn.perigo {
+  color: #d93025;
+}
+
+.icone-btn:active {
+  background: #f1f1f1;
+}
+
+/* Formulário que abre dentro da linha */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #f7f6fc;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.edit-form input[type="date"],
+.edit-form select {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--laranja);
+  border-radius: 6px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.edit-form__hora {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.edit-form__hora > div {
+  flex: 1;
+}
+
+.edit-form__hora > span {
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.edit-form__botoes {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-form__botoes button {
+  flex: 1;
+  height: 42px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-salvar-edicao {
+  background: #e8730c;
+  color: #fff;
+}
+
+.btn-cancelar-edicao {
+  background: #e6e1f5;
+  color: #222;
+}
+
+/* IMPRESSÃO */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #modalNome,
+  #modalNome *,
+  #lista,
+  #lista li,
+  #lista li span {
+    visibility: visible;
+  }
+
+  .modal,
+  .modal__caixa {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  #modalNome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.4rem;
+    color: #000;
+  }
+
+  #listaBox {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+  }
+
+  .lista li button,
+  .btn-imprimir {
+    display: none;
+  }
+}

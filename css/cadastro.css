@@ -1,0 +1,124 @@
+/* TÍTULO DA PÁGINA */
+.pagina-titulo {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--titulo-escuro);
+  margin-bottom: 24px;
+}
+
+.pagina-titulo span {
+  color: var(--titulo-laranja);
+}
+
+/* FORMULÁRIO */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--texto);
+  background: #fff;
+  border: 1px solid var(--laranja);
+  border-radius: 6px;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.campo input::placeholder {
+  color: var(--texto);
+  opacity: 0.85;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #e8730c;
+  box-shadow: 0 0 0 3px rgba(232, 115, 12, 0.2);
+}
+
+/* Seta personalizada do select */
+.campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23dc8a25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* ========== ERROS ========== */
+.campo.invalido input,
+.campo.invalido select {
+  border-color: #d93025;
+}
+
+.erro {
+  min-height: 0;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #d93025;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-principal {
+  margin-top: 8px;
+  height: 48px;
+  border: none;
+  border-radius: 6px;
+  background: #e8730c;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.btn-principal:active {
+  transform: scale(0.98);
+  background: #cf650a;
+}
+
+/* MENSAGEM (TOAST) */
+.toast {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 120px);
+  width: max-content;
+  max-width: 90%;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #2e7d32;
+  color: #fff;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.visivel {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
