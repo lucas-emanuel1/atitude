@@ -568,44 +568,134 @@ body.sem-scroll {
   color: #222;
 }
 
-/* IMPRESSÃO */
+/* FOLHA DE IMPRESSÃO */
+.folha {
+  display: none;
+}
+
 @media print {
-  body * {
-    visibility: hidden;
+  @page {
+    size: A4;
+    margin: 16mm;
   }
 
-  #modalNome,
-  #modalNome *,
-  #lista,
-  #lista li,
-  #lista li span {
-    visibility: visible;
+  body {
+    background: #fff;
   }
 
-  .modal,
-  .modal__caixa {
-    position: static;
-    max-height: none;
-    overflow: visible;
+  body > *:not(#folha) {
+    display: none !important;
   }
 
-  #modalNome {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1.4rem;
-    color: #000;
+  .folha {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    color: #1c1c1c;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  #listaBox {
-    position: absolute;
-    top: 50px;
-    left: 0;
+  .folha__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 3px solid #e8730c;
+  }
+
+  .folha__logo {
+    height: 22mm;
+    width: auto;
+  }
+
+  .folha__titulo {
+    text-align: right;
+  }
+
+  .folha__titulo h1 {
+    font-size: 20pt;
+    font-weight: 600;
+    color: #5a4636;
+  }
+
+  .folha__titulo p {
+    margin-top: 2px;
+    font-size: 9pt;
+    color: #666;
+  }
+
+  .folha__aluno {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 0.8fr;
+    gap: 12px;
+    margin: 18px 0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    background: #f3f1fb;
+  }
+
+  .folha__aluno small {
+    display: block;
+    font-size: 8pt;
+    color: #666;
+  }
+
+  .folha__aluno strong {
+    font-size: 11pt;
+    font-weight: 500;
+  }
+
+  .folha__tabela {
     width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
   }
 
-  .lista li button,
-  .btn-imprimir {
-    display: none;
+  .folha__tabela th {
+    padding: 9px 10px;
+    background: #524ca8;
+    color: #fff;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .folha__tabela td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .folha__tabela tr {
+    page-break-inside: avoid;
+  }
+
+  .folha__tabela tbody tr:nth-child(even) td {
+    background: #faf9fd;
+  }
+
+  .folha__total {
+    margin-top: 14px;
+    text-align: right;
+    font-size: 11pt;
+    font-weight: 600;
+    color: #c9701b;
+  }
+
+  .folha__rodape {
+    margin-top: 40mm;
+    page-break-inside: avoid;
+  }
+
+  .folha__assinatura {
+    width: 60mm;
+    padding-top: 6px;
+    border-top: 1px solid #333;
+    font-size: 9pt;
+    text-align: center;
+  }
+
+  .folha__rodape p {
+    margin-top: 14px;
+    font-size: 8.5pt;
+    color: #666;
   }
 }

@@ -104,6 +104,43 @@
     </div>
   </div>
 
+    <!-- FOLHA DE IMPRESSÃO -->
+  <div id="folha" class="folha" aria-hidden="true">
+    <header class="folha__topo">
+      <img src="img/logo.png" alt="Auto Escola Atitude" class="folha__logo">
+      <div class="folha__titulo">
+        <h1>Comprovante de aulas</h1>
+        <p id="folhaEmissao"></p>
+      </div>
+    </header>
+
+    <section class="folha__aluno">
+      <div><small>Aluno(a)</small><strong id="folhaNome"></strong></div>
+      <div><small>CPF</small><strong id="folhaCpf"></strong></div>
+      <div><small>Categoria</small><strong id="folhaCategoria"></strong></div>
+    </section>
+
+    <table class="folha__tabela">
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Data</th>
+          <th>Dia</th>
+          <th>Horário</th>
+          <th>Aulas</th>
+        </tr>
+      </thead>
+      <tbody id="folhaCorpo"></tbody>
+    </table>
+
+    <p class="folha__total" id="folhaTotal"></p>
+
+    <footer class="folha__rodape">
+      <div class="folha__assinatura">Assinatura do aluno</div>
+      <p>Chegue com 10 minutos de antecedência. Em caso de imprevisto, avise a autoescola com antecedência.</p>
+    </footer>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <!-- MODAL: EDITAR AULAS -->

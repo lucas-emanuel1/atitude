@@ -522,7 +522,46 @@ btnSalvar.addEventListener('click', async () => {
 });
 
 /* IMPRIMIR */
-document.getElementById('imprimir').addEventListener('click', () => window.print());
+function preencherFolha() {
+  const aluno = estado.aluno;
+  const hoje = new Date();
+
+  document.getElementById('folhaEmissao').textContent =
+    `Emitido em ${dataBR(paraISO(hoje))} às ${pad(hoje.getHours())}:${pad(hoje.getMinutes())}`;
+  document.getElementById('folhaNome').textContent = aluno.nome;
+  document.getElementById('folhaCpf').textContent = aluno.cpf;
+  document.getElementById('folhaCategoria').textContent = aluno.categoria;
+
+  const corpo = document.getElementById('folhaCorpo');
+  corpo.innerHTML = '';
+
+  estado.dias.forEach((dia, i) => {
+    const semana = DIAS_SEMANA[lerISO(dia.data).getDay()];
+    const linha = document.createElement('tr');
+
+    [
+      i + 1,
+      dataBR(dia.data),
+      semana.charAt(0).toUpperCase() + semana.slice(1),
+      `${dia.hora} → ${fimDoDia(dia.hora, dia.qtd)}`,
+      dia.qtd,
+    ].forEach((valor) => {
+      const celula = document.createElement('td');
+      celula.textContent = valor;
+      linha.appendChild(celula);
+    });
+
+    corpo.appendChild(linha);
+  });
+
+  document.getElementById('folhaTotal').textContent =
+    `Total: ${textoAulas(aulasEscolhidas())}`;
+}
+
+document.getElementById('imprimir').addEventListener('click', () => {
+  preencherFolha();
+  window.print();
+});
 
 /* EDITAR AULAS */
 const modalEditar = document.getElementById('modalEditar');
