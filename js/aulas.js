@@ -522,8 +522,9 @@ btnSalvar.addEventListener('click', async () => {
 });
 
 /* IMPRIMIR */
-function preencherFolha() {
-  const aluno = estado.aluno;
+/* ========== IMPRESSÃO (marcar e editar) ========== */
+// blocos: [{ data, hora, fim, qtd }]
+function preencherFolha(aluno, blocos) {
   const hoje = new Date();
 
   document.getElementById('folhaEmissao').textContent =
@@ -535,16 +536,19 @@ function preencherFolha() {
   const corpo = document.getElementById('folhaCorpo');
   corpo.innerHTML = '';
 
-  estado.dias.forEach((dia, i) => {
-    const semana = DIAS_SEMANA[lerISO(dia.data).getDay()];
+  let total = 0;
+
+  blocos.forEach((bloco, i) => {
+    const semana = DIAS_SEMANA[lerISO(bloco.data).getDay()];
     const linha = document.createElement('tr');
+    total += bloco.qtd;
 
     [
       i + 1,
-      dataBR(dia.data),
+      dataBR(bloco.data),
       semana.charAt(0).toUpperCase() + semana.slice(1),
-      `${dia.hora} → ${fimDoDia(dia.hora, dia.qtd)}`,
-      dia.qtd,
+      `${bloco.hora} → ${bloco.fim}`,
+      bloco.qtd,
     ].forEach((valor) => {
       const celula = document.createElement('td');
       celula.textContent = valor;
@@ -554,12 +558,51 @@ function preencherFolha() {
     corpo.appendChild(linha);
   });
 
-  document.getElementById('folhaTotal').textContent =
-    `Total: ${textoAulas(aulasEscolhidas())}`;
+  document.getElementById('folhaTotal').textContent = `Total: ${textoAulas(total)}`;
 }
 
+// Imprimir a partir de "Marcar aulas"
 document.getElementById('imprimir').addEventListener('click', () => {
-  preencherFolha();
+  const blocos = estado.dias.map((dia) => ({
+    data: dia.data,
+    hora: dia.hora,
+    fim: fimDoDia(dia.hora, dia.qtd),
+    qtd: dia.qtd,
+  }));
+
+  preencherFolha(estado.aluno, blocos);
+  window.print();
+});
+
+// Junta aulas seguidas do mesmo dia
+function agruparAulas(aulas) {
+  const blocos = [];
+
+  aulas.forEach((aula) => {
+    const fim = fimDaAula(aula);
+    const anterior = blocos[blocos.length - 1];
+
+    if (anterior && anterior.data === aula.data && anterior.fim === aula.hora) {
+      anterior.fim = fim;
+      anterior.qtd++;
+    } else {
+      blocos.push({ data: aula.data, hora: aula.hora, fim, qtd: 1 });
+    }
+  });
+
+  return blocos;
+}
+
+// Imprimir a partir de "Editar aulas"
+document.getElementById('imprimirEdicao').addEventListener('click', () => {
+  const aulas = estadoEdicao.aulas || [];
+  if (aulas.length === 0) return;
+
+  preencherFolha(estadoEdicao.aluno, agruparAulas(aulas));
+  window.print();
+});
+
+document.getElementById('imprimir').addEventListener('click', () => {
   window.print();
 });
 
@@ -637,6 +680,8 @@ async function renderEdicao() {
   }
 
   editarContador.textContent = textoAulas(aulas.length);
+  estadoEdicao.aulas = aulas;
+  document.getElementById('imprimirEdicao').hidden = aulas.length === 0;
   editarVazio.hidden = aulas.length > 0;
   editarLista.innerHTML = '';
 

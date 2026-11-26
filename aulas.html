@@ -136,8 +136,11 @@
     <p class="folha__total" id="folhaTotal"></p>
 
     <footer class="folha__rodape">
-      <div class="folha__assinatura">Assinatura do aluno</div>
-      <p>Chegue com 10 minutos de antecedência. Em caso de imprevisto, avise a autoescola com antecedência.</p>
+      <ul>
+        <li>Caso houver imprevisto, comunicar à Autoescola com <strong>48 horas de antecedência</strong>.</li>
+        <li>Chegar com no <strong>mínimo 10 minutos de antecedência</strong>, tolerância de no <strong>máximo 10 minutos após o horário marcado</strong>, sendo sujeito a taxa de <strong><u>R$ 120,00</u></strong> e remarcação da aula após efetuar o pagamento da taxa.</li>
+        <li>Vir com <strong>sapato</strong>/<strong>sandália fechado(a)</strong> e <strong>capacete</strong>.</li>
+      </ul>
     </footer>
   </div>
 
@@ -157,6 +160,13 @@
 
       <p class="vazio" id="editarVazio" hidden>Este aluno ainda não tem aulas marcadas.</p>
       <ul class="edit-lista" id="editarLista"></ul>
+      <button type="button" class="btn-imprimir" id="imprimirEdicao" aria-label="Imprimir aulas" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 2h12v5H6z"/>
+          <path d="M4 8h16a2 2 0 0 1 2 2v7h-4v-3H6v3H2v-7a2 2 0 0 1 2-2zm14 2.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          <path d="M7 16h10v6H7z"/>
+        </svg>
+      </button>
     </div>
   </div>
 

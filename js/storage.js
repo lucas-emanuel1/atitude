@@ -128,3 +128,34 @@ async function buscarAulasPeriodo(inicio, fim) {
     alunoNome: r.alunos ? r.alunos.nome : 'Aluno removido',
   }));
 }
+
+async function atualizarAluno(id, d) {
+  const { error } = await db
+    .from('alunos')
+    .update({
+      nome: d.nome,
+      nascimento: dataParaISO(d.nascimento),
+      cpf: d.cpf,
+      categoria: d.categoria,
+      escolaridade: d.escolaridade,
+      email: d.email,
+      telefone: d.telefone,
+    })
+    .eq('id', id);
+  if (error) throw error;
+}
+
+async function contarAulasDoAluno(id) {
+  const { count, error } = await db
+    .from('aulas')
+    .select('*', { count: 'exact', head: true })
+    .eq('aluno_id', id);
+  if (error) throw error;
+  return count || 0;
+}
+
+// Apaga o aluno e, junto, todas as aulas dele (on delete cascade)
+async function removerAluno(id) {
+  const { error } = await db.from('alunos').delete().eq('id', id);
+  if (error) throw error;
+}

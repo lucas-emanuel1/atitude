@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de alunos - Auto Escola Atitude</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cadastro.css">
+  <link rel="stylesheet" href="css/aulas.css">
+  <link rel="stylesheet" href="css/alunos.css">
+</head>
+<body>
+
+  <main class="app">
+
+    <header class="topo">
+      <a href="index.html">
+        <img src="img/logo.png" alt="Auto Escola Atitude - Voltar ao início" class="logo">
+      </a>
+    </header>
+
+    <h1 class="pagina-titulo">Lista de <span>alunos</span></h1>
+
+    <div class="busca">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+      </svg>
+      <input type="search" id="busca" placeholder="Pesquisar por nome ou CPF..."
+             autocomplete="off" aria-label="Pesquisar aluno">
+    </div>
+
+    <p class="contagem" id="contagem"></p>
+
+    <section id="lista" class="lista-alunos"></section>
+
+  </main>
+
+  <!-- MODAL: EDITAR ALUNO -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__caixa" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+
+      <button type="button" class="modal__fechar" id="fecharModal" aria-label="Fechar">&times;</button>
+      <h2 class="modal__nome" id="modalTitulo">Editar aluno</h2>
+
+      <form id="formAluno" class="form" novalidate>
+
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" required>
+          <span class="erro" data-erro="nome"></span>
+        </div>
+
+        <div class="campo">
+          <label for="nascimento">Data de Nascimento</label>
+          <input type="text" id="nascimento" name="nascimento" placeholder="00/00/0000"
+                 inputmode="numeric" maxlength="10" required>
+          <span class="erro" data-erro="nascimento"></span>
+        </div>
+
+        <div class="campo">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00"
+                 inputmode="numeric" maxlength="14" required>
+          <span class="erro" data-erro="cpf"></span>
+        </div>
+
+        <div class="campo">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required>
+            <option value="" disabled>Selecione</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="A/B">A/B</option>
+          </select>
+          <span class="erro" data-erro="categoria"></span>
+        </div>
+
+        <div class="campo">
+          <label for="escolaridade">Escolaridade</label>
+          <select id="escolaridade" name="escolaridade" required>
+            <option value="" disabled>Selecione</option>
+            <option value="Fundamental incompleto">Fundamental incompleto</option>
+            <option value="Fundamental completo">Fundamental completo</option>
+            <option value="Médio incompleto">Médio incompleto</option>
+            <option value="Médio completo">Médio completo</option>
+            <option value="Superior incompleto">Superior incompleto</option>
+            <option value="Superior completo">Superior completo</option>
+          </select>
+          <span class="erro" data-erro="escolaridade"></span>
+        </div>
+
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
+          <span class="erro" data-erro="email"></span>
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(88) 91234-5678"
+                 inputmode="numeric" maxlength="15" required>
+          <span class="erro" data-erro="telefone"></span>
+        </div>
+
+        <button type="submit" class="btn-principal">Salvar alterações</button>
+        <button type="button" class="btn-excluir" id="excluir">Excluir aluno</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/alunos.js"></script>
+</body>
+</html>

@@ -194,3 +194,7 @@ body {
   text-align: center;
   text-decoration: none;
 }
+
+.btn-painel + .btn-painel {
+  margin-top: 12px;
+}
